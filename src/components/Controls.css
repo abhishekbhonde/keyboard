@@ -1,0 +1,136 @@
+/* ============================================
+   Controls Panel — Glassmorphism
+   ============================================ */
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 28px;
+    border-radius: 16px;
+    background: var(--controls-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--controls-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    transition: background 0.4s, border-color 0.4s;
+}
+
+.controls__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.controls__label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    transition: color 0.4s;
+}
+
+/* Switch buttons */
+.controls__switches {
+    display: flex;
+    gap: 6px;
+}
+
+.controls__switch-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--controls-border);
+    background: var(--switch-btn-bg);
+    color: var(--text-primary);
+    font-size: 0.72rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.controls__switch-btn:hover {
+    background: var(--switch-btn-hover);
+    border-color: var(--key-accent-bg);
+}
+
+.controls__switch-btn--active {
+    background: var(--key-accent-bg);
+    color: #fff;
+    border-color: var(--key-accent-bg);
+    box-shadow: 0 2px 8px rgba(255, 120, 50, 0.4);
+}
+
+.controls__switch-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+}
+
+.controls__switch-btn--active .controls__switch-dot {
+    opacity: 1;
+    box-shadow: 0 0 4px currentColor;
+}
+
+/* Volume slider */
+.controls__slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--slider-track);
+    outline: none;
+    transition: background 0.3s;
+}
+
+.controls__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--key-accent-bg);
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s;
+}
+
+.controls__slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Theme toggle */
+.controls__theme-toggle {
+    display: flex;
+    gap: 4px;
+    background: var(--switch-btn-bg);
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.controls__theme-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.controls__theme-btn--active {
+    background: var(--controls-bg);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================
+   Design Tokens — Light Theme (Default)
+   ============================================ */
+:root {
+  /* Page */
+  --bg-gradient-start: #e8ecf1;
+  --bg-gradient-end: #dce1e8;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+
+  /* Keyboard frame */
+  --frame-bg: #2a2a2e;
+  --frame-border: #3a3a40;
+
+  /* Alpha keys (light caps) */
+  --key-alpha-bg: #f0f0f2;
+  --key-alpha-text: #2a2a2e;
+  --key-alpha-front: #d4d4d8;
+  --key-alpha-hover: #f8f8fa;
+
+  /* Modifier keys (dark caps) */
+  --key-mod-bg: #4a4a52;
+  --key-mod-text: #c8c8d0;
+  --key-mod-front: #35353b;
+  --key-mod-hover: #56565e;
+
+  /* Function keys */
+  --key-fn-bg: #e0e0e4;
+  --key-fn-text: #3a3a42;
+  --key-fn-front: #c8c8cc;
+  --key-fn-hover: #eaeaee;
+
+  /* Accent key (Esc) */
+  --key-accent-bg: #ff7832;
+  --key-accent-text: #fff;
+  --key-accent-front: #d9621e;
+  --key-accent-hover: #ff8f52;
+
+  /* Space bar */
+  --key-space-bg: #e8e8ec;
+  --key-space-front: #ccccd0;
+  --key-space-hover: #f2f2f6;
+
+  /* Controls */
+  --controls-bg: rgba(255, 255, 255, 0.65);
+  --controls-border: rgba(0, 0, 0, 0.1);
+  --switch-btn-bg: rgba(0, 0, 0, 0.04);
+  --switch-btn-hover: rgba(0, 0, 0, 0.08);
+  --slider-track: rgba(0, 0, 0, 0.12);
+
+  /* Glow */
+  --glow-rgb: 255, 120, 50;
+}
+
+/* ============================================
+   Dark Theme
+   ============================================ */
+[data-theme='dark'] {
+  --bg-gradient-start: #0f0f13;
+  --bg-gradient-end: #1a1a22;
+  --text-primary: #e8e8ec;
+  --text-secondary: #8888a0;
+
+  --frame-bg: #18181c;
+  --frame-border: #2a2a32;
+
+  --key-alpha-bg: #3a3a42;
+  --key-alpha-text: #e8e8f0;
+  --key-alpha-front: #28282e;
+  --key-alpha-hover: #44444c;
+
+  --key-mod-bg: #252528;
+  --key-mod-text: #a0a0b0;
+  --key-mod-front: #1a1a1e;
+  --key-mod-hover: #30303a;
+
+  --key-fn-bg: #32323a;
+  --key-fn-text: #c0c0d0;
+  --key-fn-front: #24242a;
+  --key-fn-hover: #3c3c44;
+
+  --key-accent-bg: #ff6b20;
+  --key-accent-text: #fff;
+  --key-accent-front: #cc5010;
+  --key-accent-hover: #ff8548;
+
+  --key-space-bg: #32323a;
+  --key-space-front: #24242a;
+  --key-space-hover: #3c3c44;
+
+  --controls-bg: rgba(30, 30, 40, 0.75);
+  --controls-border: rgba(255, 255, 255, 0.08);
+  --switch-btn-bg: rgba(255, 255, 255, 0.06);
+  --switch-btn-hover: rgba(255, 255, 255, 0.12);
+  --slider-track: rgba(255, 255, 255, 0.15);
+
+  --glow-rgb: 255, 107, 32;
+}
+
+/* ============================================
+   Global Reset & Base
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(160deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow: hidden;
+  transition: background 0.5s ease;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

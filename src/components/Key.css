@@ -1,0 +1,190 @@
+/* ============================================
+   Key Component — 3D Mechanical Keycap
+   ============================================ */
+
+.key {
+  --unit: 3.2rem;
+  --key-gap: 3px;
+  --front-height: 5px;
+  --press-depth: 3px;
+
+  position: relative;
+  width: calc(var(--key-width) * var(--unit) + (var(--key-width) - 1) * var(--key-gap));
+  height: var(--unit);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  transition: transform 0.06s ease-out;
+  transform: translateY(0);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.key:active,
+.key--pressed {
+  transform: translateY(var(--press-depth));
+}
+
+/* Key Top (visible face) */
+.key__top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: var(--front-height);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 3px 5px;
+  box-sizing: border-box;
+  transition: background 0.15s, box-shadow 0.06s;
+  z-index: 2;
+}
+
+/* Key Front (3D depth edge) */
+.key__front {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--front-height);
+  border-radius: 0 0 6px 6px;
+  z-index: 1;
+  transition: background 0.15s;
+}
+
+.key--pressed .key__front,
+.key:active .key__front {
+  height: calc(var(--front-height) - var(--press-depth));
+}
+
+/* ---- Labels ---- */
+.key__label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  line-height: 1;
+}
+
+.key__label-main {
+  font-size: 0.65rem;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.key__label-sub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* ===========================================
+   Key Types — Color Variants
+   =========================================== */
+
+/* Alpha keys — light keycaps */
+.key--alpha .key__top {
+  background: var(--key-alpha-bg);
+  color: var(--key-alpha-text);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.key--alpha .key__front {
+  background: var(--key-alpha-front);
+}
+
+.key--alpha:hover .key__top {
+  background: var(--key-alpha-hover);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Modifier keys — dark keycaps */
+.key--modifier .key__top {
+  background: var(--key-mod-bg);
+  color: var(--key-mod-text);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.key--modifier .key__front {
+  background: var(--key-mod-front);
+}
+
+.key--modifier:hover .key__top {
+  background: var(--key-mod-hover);
+}
+
+/* Function keys — medium shade */
+.key--function .key__top {
+  background: var(--key-fn-bg);
+  color: var(--key-fn-text);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.key--function .key__front {
+  background: var(--key-fn-front);
+}
+
+.key--function:hover .key__top {
+  background: var(--key-fn-hover);
+}
+
+/* Accent key — orange (Esc) */
+.key--accent .key__top {
+  background: var(--key-accent-bg);
+  color: var(--key-accent-text);
+  box-shadow:
+    0 1px 3px rgba(255, 120, 50, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.key--accent .key__front {
+  background: var(--key-accent-front);
+}
+
+.key--accent:hover .key__top {
+  background: var(--key-accent-hover);
+  box-shadow:
+    0 2px 8px rgba(255, 120, 50, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Space bar */
+.key--space .key__top {
+  background: var(--key-space-bg);
+  color: var(--key-alpha-text);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.key--space .key__front {
+  background: var(--key-space-front);
+}
+
+.key--space:hover .key__top {
+  background: var(--key-space-hover);
+}
+
+/* Pressed state glow */
+.key--pressed .key__top,
+.key:active .key__top {
+  box-shadow:
+    0 0 8px rgba(var(--glow-rgb), 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}

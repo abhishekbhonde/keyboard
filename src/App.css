@@ -1,0 +1,148 @@
+/* ============================================
+   App Layout
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 32px;
+  position: relative;
+}
+
+/* Title area */
+.app__header {
+  text-align: center;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.app__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  transition: color 0.4s;
+}
+
+.app__subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: color 0.4s;
+}
+
+/* Keyboard wrapper with subtle animation */
+.app__keyboard-wrapper {
+  animation: floatIn 0.8s ease-out;
+}
+
+/* Footer */
+.app__footer {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  text-align: center;
+  transition: color 0.4s;
+}
+
+.app__footer a {
+  color: var(--key-accent-bg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.app__footer a:hover {
+  text-decoration: underline;
+}
+
+/* Typing hint */
+.app__hint {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Background decoration */
+.app__bg-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--glow-rgb), 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background 0.5s;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .app__keyboard-wrapper {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 750px) {
+  .app__keyboard-wrapper {
+    transform: scale(0.65);
+    transform-origin: center;
+  }
+
+  .app {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .app__keyboard-wrapper {
+    transform: scale(0.45);
+    transform-origin: center;
+  }
+}
