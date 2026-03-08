@@ -1,12 +1,14 @@
 import { useState, useCallback } from 'react';
 import Keyboard from './components/Keyboard';
 import Controls from './components/Controls';
+import TypingTest from './components/TypingTest';
 import './App.css';
 
 function App() {
   const [soundProfile, setSoundProfile] = useState('clicky');
   const [volume, setVolume] = useState(0.6);
   const [theme, setTheme] = useState('light');
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -19,26 +21,41 @@ function App() {
     <div className="app">
       <div className="app__bg-glow" />
 
-      <div className="app__keyboard-wrapper">
-        <Keyboard
+      <aside className="app__sidebar">
+        <div className="app__logo">
+          <h1>Typing<span>Box</span></h1>
+          <p>Master your keystrokes</p>
+        </div>
+
+        <Controls
           soundProfile={soundProfile}
+          setSoundProfile={setSoundProfile}
           volume={volume}
-          onThemeToggle={toggleTheme}
+          setVolume={setVolume}
+          theme={theme}
+          setTheme={setTheme}
+          voiceEnabled={voiceEnabled}
+          setVoiceEnabled={setVoiceEnabled}
         />
-      </div>
 
-      <Controls
-        soundProfile={soundProfile}
-        setSoundProfile={setSoundProfile}
-        volume={volume}
-        setVolume={setVolume}
-        theme={theme}
-        setTheme={setTheme}
-      />
+        <div className="app__sidebar-footer">
+          <p>Built with ❤️ by Abhishek</p>
+        </div>
+      </aside>
 
-      <footer className="app__footer">
-        <p>Built with ❤️ by Abhishek</p>
-      </footer>
+      <main className="app__main">
+        <div className="app__content">
+          <TypingTest />
+          <div className="app__keyboard-container">
+            <Keyboard
+              soundProfile={soundProfile}
+              volume={volume}
+              onThemeToggle={toggleTheme}
+              voiceEnabled={voiceEnabled}
+            />
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

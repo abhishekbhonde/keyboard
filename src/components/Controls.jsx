@@ -8,6 +8,8 @@ export default function Controls({
     setVolume,
     theme,
     setTheme,
+    voiceEnabled,
+    setVoiceEnabled,
 }) {
     return (
         <div className="controls">
@@ -57,6 +59,16 @@ export default function Controls({
                         🌙
                     </button>
                 </div>
+            </div>
+
+            <div className="controls__group">
+                <label className="controls__label">Voice Feedback</label>
+                <button
+                    className={`controls__voice-btn ${voiceEnabled ? 'controls__voice-btn--active' : ''}`}
+                    onClick={() => setVoiceEnabled(!voiceEnabled)}
+                >
+                    {voiceEnabled ? '🔊 On' : '🔇 Off'}
+                </button>
             </div>
         </div>
     );

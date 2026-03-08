@@ -2,24 +2,31 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Key from './Key';
 import { keyboardLayout } from '../data/keyboardLayout';
 import { playKeySound } from '../audio/soundEngine';
+import { speakEffect } from '../audio/voiceEngine';
 import './Keyboard.css';
 
-export default function Keyboard({ soundProfile, volume, onThemeToggle }) {
+export default function Keyboard({ soundProfile, volume, onThemeToggle, voiceEnabled }) {
     const [pressedKeys, setPressedKeys] = useState(new Set());
     const pressedPhysical = useRef(new Set());
 
     const handleKeyDown = useCallback((keyData) => {
+        // Voice feedback first for minimum latency
+        if (voiceEnabled) {
+            speakEffect(keyData.label, volume);
+        }
+
+        playKeySound(soundProfile, volume);
+
         setPressedKeys((prev) => {
             const next = new Set(prev);
             next.add(keyData.id);
             return next;
         });
-        playKeySound(soundProfile, volume);
 
         if (keyData.action === 'theme') {
             onThemeToggle?.();
         }
-    }, [soundProfile, volume, onThemeToggle]);
+    }, [soundProfile, volume, onThemeToggle, voiceEnabled]);
 
     const handleKeyUp = useCallback((keyData) => {
         setPressedKeys((prev) => {
@@ -41,7 +48,16 @@ export default function Keyboard({ soundProfile, volume, onThemeToggle }) {
         const onPhysicalKeyDown = (e) => {
             const keyData = keyCodeToId[e.code];
             if (keyData && !pressedPhysical.current.has(e.code)) {
-                e.preventDefault();
+                // If an input is focused, let printable characters pass through
+                const isInputActive = document.activeElement.tagName === 'INPUT' ||
+                    document.activeElement.tagName === 'TEXTAREA';
+
+                // Still prevent default for Tab and certain other system keys if needed,
+                // but generally allow input for the typing test.
+                if (!isInputActive || e.code === 'Tab') {
+                    e.preventDefault();
+                }
+
                 pressedPhysical.current.add(e.code);
                 handleKeyDown(keyData);
             }
