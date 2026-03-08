@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [soundProfile, setSoundProfile] = useState('clicky');
   const [volume, setVolume] = useState(0.6);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [voiceEnabled, setVoiceEnabled] = useState(false);
 
   const toggleTheme = useCallback(() => {
